@@ -1,0 +1,206 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: Helvetica, STHeiti STXihei, Microsoft JhengHei, Microsoft YaHei, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    word-wrap: break-word;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html, body {
+    -ms-touch-action: none;
+    background: #ffa102;
+    height: 100%;
+}
+body {
+    font-size: 12px;
+    line-height: 1.5;
+}
+ul, li {
+    list-style: none;
+}
+.highlight {
+    color: #ffa102;
+}
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    background: #fff;
+    z-index: 999;
+    display:table;
+}
+#loading span{
+    display:table-cell;
+    vertical-align:middle;
+}
+
+#content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #ffa102 url("../resource/bg.png") no-repeat;
+    background-size: 100%;
+}
+#rule {
+    position: absolute;
+    top: 2.5%;
+    right: 2.5%;
+    padding: .2rem .4rem;
+    background-color: #e44034;
+    font-size: 12px;
+    color: #fff;
+    text-align: left;
+    border-radius: 1rem;
+}
+#rule span, #rule i {
+    float: left;
+}
+#rule i{
+    margin-left: .2rem;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAQAAABu4E3oAAABUklEQVR4AY3SAwweMRjG8We2bVvhotlWOJvBbIazbds2o9leONvWf1t76d2ny35h/aKKRnrq0I/prGQeQ2lCDoUhPxN4TaQvLKS04qMz30hkhGIxC+shc+lJC9owhiPg7FAk5mCtI5UCqM0j8OyTjw5YpxSDbLwDz0RZZAFPARmUpQ1N8d6jFThl7dRUrHsyqIH1iPwyeAOeo5JIy0+srTJYHx0958EpJhqA54AMroLnoAzugdNHDANnEyO5BE5J/UVeghaJBSTSQgb7Cdor1hNfbRkMJNJxsZh46rtPFG2/GEscMihErBWiFXHYv0t7Yg0WWYnnOWe4xDdiVZLEBv7fTf1DQWK9ZzTTiVVVFuOI9IliZn4AkTbLx0GCHsggI0F35MQe+kUXM7cRhxtkUjQmE3SOOzisJYXioRr7iXWWxgpDefqwkD2cZD/LGEBlRfkDMEo0YJ9JtOMAAAAASUVORK5CYII=");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#startBtn {
+    position: absolute;
+    top: 83%;
+    left: 22%;
+    padding: .5rem 0;
+    width: 56%;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #e44034;
+    border: 3px solid #fff;
+    border-radius: 20px;
+}
+#popup {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+}
+#rulePage {
+    display: none;
+    height: 100%;
+}
+#popup .ruleTop {
+    position: fixed;
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+}
+#popup li {
+    float: left;
+    width: 25%;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+}
+#popup .closeBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#popup .ruleBody {
+    padding-top: 4rem;
+    height: 90%;
+}
+#popup .ruleBody iframe {
+    width: 100%;
+    height: 100%;
+}
+.close {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+.close::before {
+    transform: rotate(45deg);
+}
+.close::after {
+    transform: rotate(-45deg);
+}
+.close:hover::before, .close:hover::after {
+    background: #fff;
+}
+.close::before, .close::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #fff;
+}
+.close.hairline::before, .close.hairline::after {
+    height: 1px;
+}
+#game {
+    display: none;
+    height: 100%;
+}
+#result {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 78%;
+    margin: 25% 11%;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 888;
+}
+#success, #failure{
+    display: none;
+}
+#result img {
+    width: 100%;
+    border: none;
+}
+.button {
+    padding-bottom: 2rem;
+}
+.resultTitle {
+    padding-top: 2rem;
+}
+#result p {
+    font-size: 20px;
+    font-weight: bold;
+}
+#result p span {
+    color: #e44034;
+}
+.button button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #fff;
+}
+#get {
+    margin-right: 0.4rem;
+    background-color: #e44034;
+}
+.again {
+    margin-left: 0.4rem;
+    background-color: #ffa102;
+}

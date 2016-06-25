@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="full-screen" content="true"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+
+    <title>疯狂戳红包</title>
+
+    <link rel="stylesheet" href="css/index.css?v=1.2">
+</head>
+<body>
+    <div id="loading"><span><img src="resource/images/loading.gif"></span></div>
+    <div id="content">
+        <button id="rule"><span>规则说明</span><i></i></button>
+        <button id="startBtn">开始游戏</button>
+    </div>
+    <div id="popup">
+        <div id="rulePage">
+            <ul class="ruleTop">
+                <li>活动说明</li>
+                <li class="closeBtn"><span class="close hairline"></span><li>
+            </ul>
+            <div class="ruleBody">
+                <iframe src="rule.html?t=100" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div id="game">
+        </div>
+        <div id="result">
+            <div id="success">
+                <img class="resultTitle" src="resource/images/success1.png" />
+                <p>获得 <span class="scores"></span> 分</p>
+                <img src="resource/images/success2.png" />
+                <div class="button">
+                    <button id="get">领取奖品</button>
+                    <button class="again">再来一次</button>
+                </div>
+            </div>
+            <div id="failure">
+                <img class="resultTitle" src="resource/images/failure1.png" />
+                <p>获得 <span class="scores"></span> 分</p>
+                <img src="resource/images/failure2.png" />
+                <div class="button">
+                    <button class="again">再来一次</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="lib/zepto.min.js"></script>
+<script src="lib/phaser.min.js"></script>
+<script src="script/main.js"></script>
+</html>
