@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="css/index.css?v=1.2">
 </head>
 <body>
-    <div id="loading"><span><img src="resource/images/loading.gif"></span></div>
+    <div id="loading">
+        <span><img src="resource/images/loading.gif"></span>
+    </div>
     <div id="content">
         <button id="rule"><span>规则说明</span><i></i></button>
         <button id="startBtn">开始游戏</button>
@@ -29,7 +31,28 @@
                 <li class="closeBtn"><span class="close hairline"></span><li>
             </ul>
             <div class="ruleBody">
-                <iframe src="rule.html?t=100" frameborder="0"></iframe>
+                <div class="content">
+                    <dl>
+                        <dt>活动奖品</dt>
+                        <dd>一等奖：一只野生奥特曼</dd>
+                        <dd>二等奖：一对野生程序猿</dd>
+                        <dd>三等奖：一打野生程序猿</dd>
+                    </dl>
+                    <dl>
+                        <dt>活动时间</dt>
+                        <dd>2016年6月21日 00:00 - 2016年6月30日 00:00</dd>
+                    </dl>
+                    <dl>
+                        <dt>活动规则</dt>
+                        <dd>活动期间，用户通过点击红包商品详情页的红包图标进入红包小游戏，达到一定分数后即可领取优惠券。</dd>
+                        <dd>用户可多次参与游戏，每个用户每天有 <span class="highlight">3</span> 次领券机会，达到的分数越高获得的优惠金额越高。每种优惠券每人每日限领一张，先到先得。</dd>
+                        <dd>优惠金额不参与返利。</dd>
+                    </dl>
+                    <dl>
+                        <dt>兑奖说明</dt>
+                        <dd>在优惠券有效期内购买指定商品时，结算时可勾选相应的优惠，如不勾选则无法享受优惠。</dd>
+                    </dl>
+                </div>
             </div>
         </div>
         <div id="game">
@@ -51,6 +74,11 @@
                 <div class="button">
                     <button class="again">再来一次</button>
                 </div>
+            </div>
+            <div id="callback">
+                <button class="closeBtn">X</button>
+                <img src="resource/images/loading2.gif">
+                <p></p>
             </div>
         </div>
     </div>

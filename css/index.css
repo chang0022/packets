@@ -41,7 +41,6 @@ ul, li {
     display:table-cell;
     vertical-align:middle;
 }
-
 #content {
     position: relative;
     width: 100%;
@@ -97,6 +96,18 @@ ul, li {
 #rulePage {
     display: none;
     height: 100%;
+}
+#rulePage .content {
+    margin: 0 10px;
+}
+#rulePage dt {
+    margin: 10px 0;
+    display: inline-block;
+    background-color: #fff;
+    color: #000;
+}
+#rulePage dd {
+    color: #fff;
 }
 #popup .ruleTop {
     position: fixed;
@@ -164,13 +175,13 @@ ul, li {
     top: 0;
     left: 0;
     width: 78%;
-    margin: 25% 11%;
+    margin: 11% 11%;
     background-color: #fff;
     border-radius: 10px;
     text-align: center;
     z-index: 888;
 }
-#success, #failure{
+#success, #failure, #callback {
     display: none;
 }
 #result img {
@@ -196,6 +207,14 @@ ul, li {
     font-size: 20px;
     color: #fff;
 }
+@media (device-height:480px) and (-webkit-min-device-pixel-ratio:2),(device-height:568px) and (-webkit-min-device-pixel-ratio:2){/* 兼容iphone4/4s5/5 */
+    .button button {
+        padding: 0.4rem 0.8rem;
+        border-radius: 10px;
+        font-size: 20px;
+        color: #fff;
+    }
+}
 #get {
     margin-right: 0.4rem;
     background-color: #e44034;
@@ -203,4 +222,18 @@ ul, li {
 .again {
     margin-left: 0.4rem;
     background-color: #ffa102;
+}
+#callback img {
+    margin: 3rem 0;
+    width: auto;
+}
+#callback p {
+    display: none;
+    margin: 3rem 0;
+    font-size: 18px;
+}
+#callback .closeBtn {
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent !important;
 }

@@ -16,11 +16,32 @@ $('.again').click(function () {
     var _this = $(this);
     HANDLE.playAgain(_this);
 });
+$('#callback').find(".closeBtn").click(function () {
+    HANDLE.closeCallback();
+});
 // 领取奖品方法
 // 全局score
 $('#get').click(function () {
-    //todo
-    console.log(score);
+    $('#success').hide();
+    $('#callback').show();
+    $.ajax({
+        url: '../briberyMobile/receiveReward',
+        type: "POST",
+        data: {activityId: activityId, promoterId: promoterId,playScore:score},
+        success: function (result) {
+            if (result.success) {
+                window.location.href = result.data;
+            } else {
+                $('#callback').find('img').hide();
+                $('#callback').find('p').show();
+                $('#callback').find('p').text(result.msg);
+            }
+        }, error: function () {
+            $('#callback').find('img').hide();
+            $('#callback').find('p').show();
+            $('#callback').find('p').text('服务君繁忙，请稍后再试~');
+        }
+    })
 });
 window.onresize = function(){
     PAGE.init();
@@ -28,9 +49,7 @@ window.onresize = function(){
 window.onload = function () {
     PAGE.init();
     game.state.start('boot');
-    $.get('http://www.neochang.xxx', function (data) {
-        baseline = data;
-    });
+    baseline = 500;
 };
 /**
  * 界面操作方法
@@ -59,14 +78,17 @@ var HANDLE = {
         $('#failure').find('.scores').text(s);
         $('#failure').show();
     },
+    closeCallback: function () {
+        $('#success').show();
+        $('#callback').hide();
+    },
     playAgain: function (t) {
         var id = t.parent().parent().attr('id');
         $('#' + id).hide();
         $('#result').hide();
         $('#popup').hide();
-    },
-
-}
+    }
+};
 /**
  * 页面初始化配置
  * @type {{auto: PAGE.auto, resizeCanvas: PAGE.resizeCanvas, init: PAGE.init}}
@@ -102,6 +124,7 @@ var imgSrc = 'resource/images/';
 var packetLength = 9;
 var packetSprite = 'sprite.png';
 var smokeSprite = 'smoke.png';
+var timeOverImage = 'over.png';
 var states = {};
 var Width = $(window).width();
 var Height = $(window).height();
@@ -124,6 +147,7 @@ states.preload = function () {
     this.preload = function () {
         game.load.spritesheet('sprites', imgSrc + packetSprite, 80, 80);
         game.load.spritesheet('smoke', imgSrc + smokeSprite, 80, 80);
+        game.load.image('over', imgSrc + timeOverImage);
         game.load.onFileComplete.add(function(progress){
             if ( progress === 100 ) $('#loading').hide();
         });
@@ -145,7 +169,7 @@ states.play  = function () {
         var packet = game.add.image(xy.x, xy.y, 'sprites', i);
         setTimeout(function () {
             packet.kill();
-        },1000);
+        }, 500);
         packet.inputEnabled = true;
         packet.events.onInputDown.add(function () {
             score += 10;
@@ -171,17 +195,17 @@ states.play  = function () {
     this.create = function () {
         this.timeText = game.add.text( Width/2 ,20,'时间',{
             font: "normal 22px 微软雅黑",
-            fill: "#fff",
+            fill: "#fff"
         });
         this.timeText.anchor.setTo(0.5,0.5);
         this.second = game.add.text( Width/2 ,60, totalSecond,{
             font: "normal 30px 微软雅黑",
-            fill: "#fff",
+            fill: "#fff"
         });
         this.second.anchor.setTo(0.5,0.5);
         this.scoreText = game.add.text(20,30,'分数：' + score,{
             font: "normal 22px 微软雅黑",
-            fill: "#fef000",
+            fill: "#fef000"
         });
     };
     this.updateScore = function () {
@@ -218,16 +242,33 @@ states.play  = function () {
         this.updateScore();
         this.updateSecond();
         this.result();
+
     };
 };
 states.success = function () {
     this.create = function () {
-        HANDLE.openSuccess(score);
+        var over = game.add.image(Width/2, Height/2, 'over');
+        over.anchor.set(0.5, 0.5);
+        over.scale.set(0.8);
+        over.angle = 0;
+        game.add.tween(over.scale).to( { x: 1, y: 1 }, 200, 'Linear', true, 0, 6, true);
+        game.add.tween(over).to({ angle: -10 },100,'Linear',true, 0, 12, true);
+        setTimeout(function () {
+            HANDLE.openSuccess(score);
+        }, 1300);
     };
 };
 states.failure = function () {
     this.create = function () {
-        HANDLE.openFailure(score);
+        var over = game.add.image(Width/2, Height/2, 'over');
+        over.anchor.set(0.5, 0.5);
+        over.scale.set(0.8);
+        over.angle = 0;
+        game.add.tween(over.scale).to( { x: 1, y: 1 }, 200, 'Linear', true, 0, 6, true);
+        game.add.tween(over).to({ angle: -10 },100,'Linear',true, 0, 12, true);
+        setTimeout(function () {
+            HANDLE.openFailure(score);
+        }, 1300);
     };
 };
 
